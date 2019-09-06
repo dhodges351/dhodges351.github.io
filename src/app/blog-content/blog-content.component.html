@@ -1,0 +1,38 @@
+<mat-toolbar>
+  <span>Add Blog Content</span>
+</mat-toolbar>
+<div style="margin:20px;">
+<form [formGroup]="blogContentForm" (ngSubmit)="onFormSubmit(blogContentForm.value)">   
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Title" formControlName="title" [errorStateMatcher]="matcher">
+    <mat-error>
+      <span *ngIf="!blogContentForm.get('title').valid && blogContentForm.get('title').touched">Please enter the Blog
+        Title</span>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Category" formControlName="category" [errorStateMatcher]="matcher">
+    <mat-error>
+      <span *ngIf="!blogContentForm.get('category').valid && blogContentForm.get('category').touched">Please enter the
+        Blog Category</span>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" cdkAutosizeMaxRows="7" placeholder="Content"
+      formControlName="content" [errorStateMatcher]="matcher"></textarea>
+    <mat-error>
+      <span *ngIf="!blogContentForm.get('content').valid && blogContentForm.get('content').touched">Please enter the
+        Blog Content</span>
+    </mat-error>
+  </mat-form-field>
+  <div class="button-row">
+    <button type="submit" [disabled]="!blogContentForm.valid" mat-raised-button color="primary">
+      <mat-icon>save</mat-icon>
+    </button>
+    &nbsp;&nbsp;<input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+    <button mat-raised-button [disabled]="!uploader.getNotUploadedItems().length" (click)="uploader.uploadAll()">
+      Upload Image</button>
+    <!-- &nbsp;&nbsp;<app-upload></app-upload>  -->
+  </div>
+</form>
+</div>

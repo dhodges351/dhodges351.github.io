@@ -1,0 +1,48 @@
+<div mat-dialog-content>    
+    <form [formGroup]="blogPostForm" (ngSubmit)="onFormSubmit(blogPostForm.value);">        
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Title" formControlName="title" [errorStateMatcher]="matcher">
+            <mat-error>
+                <span *ngIf="!blogPostForm.get('title').valid && blogPostForm.get('title').touched">Please enter Blog
+                    Post Title</span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Category" formControlName="category" [errorStateMatcher]="matcher">
+            <mat-error>
+                <span *ngIf="!blogPostForm.get('category').valid && blogPostForm.get('category').touched">Please enter Blog
+                    Post Category</span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Author" formControlName="author" [errorStateMatcher]="matcher">
+            <mat-error>
+                <span *ngIf="!blogPostForm.get('author').valid && blogPostForm.get('author').touched">Please enter Blog
+                    Post Author</span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Short Description" formControlName="short_desc"
+                [errorStateMatcher]="matcher"></textarea>
+            <mat-error>
+                <span *ngIf="!blogPostForm.get('short_desc').valid && blogPostForm.get('short_desc').touched">Please
+                    enter Blog Post short description</span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Image" formControlName="image" [errorStateMatcher]="matcher">
+            <mat-error>
+                <span *ngIf="!blogPostForm.get('image').valid && blogPostForm.get('image').touched">Please enter Blog
+                    Post Image</span>
+            </mat-error>
+        </mat-form-field>
+        <div class="button-row">
+            <button type="submit" [disabled]="!blogPostForm.valid" mat-raised-button color="primary">
+                <mat-icon>save</mat-icon>
+            </button>
+            &nbsp;&nbsp;<input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+            <button mat-raised-button [disabled]="!uploader.getNotUploadedItems().length" (click)="$event.preventDefault(); this.uploader.uploadAll();">
+              Upload Image</button>     
+        </div>
+    </form>
+</div>

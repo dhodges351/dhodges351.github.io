@@ -1,0 +1,152 @@
+<div class="button-row">
+  <a mat-raised-button color="primary" (click)="addPost()">
+    <mat-icon>add</mat-icon>
+  </a>
+</div>
+<ul id="mainUL" fxLayout fxShow="{{listOpen ?'true':'false'}}" #sectionToScrollTo *ngFor="let blogPost of blogPosts">
+  <mat-card>
+    <table>
+      <tr>
+        <td>
+          <div>
+            <h2>{{blogPost.title}}</h2>
+            <h3>{{blogPost.category}}</h3>
+            <p>
+              {{blogPost.author}} - {{blogPost.createdAt | date: 'MM/dd/yyyy HH:mm:ss'}}
+              <br />
+              {{blogPost.short_desc}}
+            </p>
+          </div>
+        </td>
+        <td>
+          <div fxLayoutAlign="end">
+           <img fxShow="{{blogPost.image == null || blogPost.image.length == 0 ?'false':'true'}}" 
+              src="{{blogPost.image}}" height="50%" width="50%" alt="stamp photo">
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div style="margin-bottom:5px;">
+            <button mat-button (click)="addComment(blogPost._id)">REPLY</button>
+            <button mat-button id="btnShowHideComments" (click)="showHideComments(this.blogPost._id)">COMMENTS</button>
+            <button mat-button style="display:inline-block;"
+              fxShow="{{this.blogPost.author == this.loggedInUser ?'true':'false'}}"
+              (click)="editItem(this.blogPost._id)">EDIT</button>
+            <button mat-button style="display:inline-block;"
+              fxShow="{{this.blogPost.author == this.loggedInUser ?'true':'false'}}"
+              (click)="deleteItem(this.blogPost._id)">DELETE</button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <table fxShow="{{this.blogPost._id == this.id ?'true':'false'}}" mat-table [dataSource]="dataSource1"
+            class="mat-elevation-z8">
+            <ng-container matColumnDef="author">
+              <th mat-header-cell *matHeaderCellDef> Author </th>
+              <td mat-cell *matCellDef="let element"> {{element.author}} </td>
+            </ng-container>
+            <ng-container matColumnDef="comment">
+              <th mat-header-cell *matHeaderCellDef> Comment </th>
+              <td mat-cell *matCellDef="let element"> {{element.comment}} </td>
+            </ng-container>
+            <ng-container matColumnDef="createdAt">
+              <th mat-header-cell *matHeaderCellDef> Date Created </th>
+              <td mat-cell *matCellDef="let element"> {{element.createdAt | date: 'MM/dd/yyyy HH:mm:ss' }} </td>
+            </ng-container>
+            <ng-container matColumnDef="edit">
+              <th mat-header-cell *matHeaderCellDef> </th>
+              <td mat-cell *matCellDef="let element">
+                <br />
+                <a class="iconLink1" id="btnEdit" (click)="editComment(element._id)">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </a>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="delete">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <br />
+                <a class="iconLink1" id="btnDelete" (click)="deleteComment(element._id)">
+                  <i class="fa fa-trash"></i>
+                </a>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="_id">
+              <mat-header-cell *matHeaderCellDef [style.display]="'none'">Id</mat-header-cell>
+              <mat-cell *matCellDef="let element" [style.display]="'none'"> {{element._id}} </mat-cell>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </mat-card>
+</ul>
+<div id="container">
+  <div fxShow="{{listOpen ?'true':'false'}}">
+    <a mat-raised-button color="primary" (click)="scrollToTop()">
+      Back to Top
+    </a>
+  </div>
+  <div style="margin-right:5px;" fxShow="{{listOpen ?'true':'false'}}">
+    <a mat-raised-button color="primary" onclick="return false;">
+      More Posts
+    </a>
+  </div>
+</div>
+
+<div fxLayout fxShow="{{detailsEditOpen ?'true':'false'}}">
+  <div fxFlex="100%">
+    <form [formGroup]="blogPostForm">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="image" formControlName="image">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Title" formControlName="title" [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!blogPostForm.get('title').valid && blogPostForm.get('title').touched">Please enter Blog Post
+            Title</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Category" formControlName="category" [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!blogPostForm.get('category').valid && blogPostForm.get('category').touched">Please enter Blog
+            Post Category</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Author" formControlName="author" [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!blogPostForm.get('author').valid && blogPostForm.get('author').touched">Please enter Blog Post
+            Author</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Short Description" formControlName="short_desc"
+          [errorStateMatcher]="matcher"></textarea>
+        <mat-error>
+          <span *ngIf="!blogPostForm.get('short_desc').valid && blogPostForm.get('short_desc').touched">Please enter
+            Blog Post Short Description</span>
+        </mat-error>
+      </mat-form-field>
+      <div class="button-row">
+        <button [disabled]="!blogPostForm.valid" mat-raised-button color="primary"
+          (click)="saveForm(blogPostForm.value)">
+          <mat-icon>save</mat-icon>
+        </button>
+        &nbsp;&nbsp;<input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+        <button mat-raised-button [disabled]="!uploader.getNotUploadedItems().length"
+          (click)="$event.preventDefault(); this.uploader.uploadAll();">
+          Upload Image
+        </button>
+        <button mat-button (click)="swapWhatIsOpen('list')">
+          RETURN
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

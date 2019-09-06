@@ -1,0 +1,53 @@
+<div style="margin:20px;">
+  <div class="button-row">
+    <a mat-raised-button color="primary" (click)="allBlogContent()">
+      <mat-icon>list</mat-icon>
+    </a>
+  </div>
+  <form [formGroup]="blogContentForm" (ngSubmit)="onFormSubmit(blogContentForm.value)">
+    <div style="margin-top:30px; margin-bottom:10px;" class="example-full-width">
+      <mat-checkbox after="true" [checked]="false" formControlName="currentBlog">Current Blog
+      </mat-checkbox>
+    </div>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Image" formControlName="image">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Title" formControlName="title" [errorStateMatcher]="matcher">
+      <mat-error>
+        <span *ngIf="!blogContentForm.get('title').valid && blogContentForm.get('title').touched">Please enter Blog
+          Content Title</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Category" formControlName="category" [errorStateMatcher]="matcher">
+      <mat-error>
+        <span *ngIf="!blogContentForm.get('category').valid && blogContentForm.get('category').touched">Please enter
+          Blog
+          Content Category</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Content" formControlName="content" [errorStateMatcher]="matcher"></textarea>
+      <mat-error>
+        <span *ngIf="!blogContentForm.get('content').valid && blogContentForm.get('content').touched">Please enter Blog
+          Content Text</span>
+      </mat-error>
+    </mat-form-field>
+    <div class="button-row">
+      <button type="submit" [disabled]="!blogContentForm.valid" mat-raised-button color="primary">
+        <mat-icon>save</mat-icon>
+      </button>
+      &nbsp;&nbsp;<input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+      <button mat-raised-button [disabled]="!uploader.getNotUploadedItems().length" (click)="uploader.uploadAll()">
+        Upload Image
+      </button>
+      <button mat-button (click)="returnToAllBlogContent()">
+          RETURN
+      </button>
+    </div>
+  </form>
+  <div style="margin:30px;">
+   &nbsp;
+  </div>
+</div>

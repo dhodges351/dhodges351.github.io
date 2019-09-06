@@ -1,0 +1,29 @@
+<div style="margin:0px;background-color: lightgray;">
+    <table width="100%">
+        <tr>
+            <td>
+                <div style="margin-top:5px;margin-left:10px;font-size:x-large;font-weight:bold;">
+                    {{title}} - {{category}}
+                </div>
+                <div style="margin-bottom:10px;margin-top:5px;margin-left:10px;font-size:small;font-weight:normal;">
+                    By Bob Hodges {{createdAt | date: 'MM/dd/yyyy HH:mm:ss' }}
+                </div>
+            </td>
+            <td>
+                <div style="margin-right:10px;text-align: right;">
+                    <a color="primary" mat-raised-button class="orangeButton" (click)="openDialog()">
+                        Comment
+                    </a>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="container1">
+    <p style="font-size:14px;">
+        {{content}}
+    </p>
+    <div fxLayoutAlign="center">
+        <img src="{{image}}" height="35%" width="35%" alt="stamp photo" />
+    </div>
+</div>

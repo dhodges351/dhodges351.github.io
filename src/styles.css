@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* for sidenav to take whole page */
+/* html, body { 
+    margin: 0;
+    height: 100%;
+} */
+
+.mat-tab-label{
+    font-weight: bold;
+}
+
+html, body {
+    height: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+    background-color: white;
+  }
+

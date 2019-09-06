@@ -1,0 +1,51 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="onToggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="box">
+      <a routerLink="/home">
+        <span style="font-family:cursive;">The Gourmet Philatelist</span>
+      </a>
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="center">
+      <ul class="imgUl" fxLayout fxLayoutGap="5px">
+        <li>
+          <img src="assets/images/greenguy.jpg" />
+        </li>
+        <li>
+          <img src="assets/images/belgie.jpg" />
+        </li>
+        <li>
+          <img src="assets/images/queenblack.png" />
+        </li>
+        <li>
+          <img src="assets/images/stlucia.png" />
+        </li>
+        <li>
+            <img src="assets/images/segei.png" />
+        </li>
+        <!-- <li>
+            <img src="assets/images/blueguy.png" />
+        </li>
+        <li>
+            <img src="assets/images/monalisa1.jpg" />
+        </li> -->
+      </ul>
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="end">
+        <ul class="imgUl" fxLayout fxLayoutGap="5px">
+        <li *ngIf="auth.loggedIn === false">
+          <button class="btn btn-primary btn-margin" id="qsLoginBtn" (click)="auth.login()">
+            Log in
+          </button>
+        </li>
+        <li *ngIf="auth.loggedIn === true">
+          <button class="btn btn-primary btn-margin" id="qsLoginBtn" (click)="auth.logout()">
+            Log Out
+          </button>
+        </li>
+      </ul>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

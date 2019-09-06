@@ -1,0 +1,41 @@
+a {
+    text-decoration: none;
+    color: white;
+    font-family: cursive;
+}
+
+a:hover, a:active{
+    color: lightgray;
+}
+
+.navigation-items{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+mat-toolbar{
+    border-radius: 3px;
+    height:77px;
+}
+
+@media(max-width: 959px){
+    mat-toolbar{
+        border-radius: 0px;
+    }
+}
+
+.box {
+    display: flex;
+    align-items:center;
+    margin-left: 10px;
+    margin-top: 10px;
+ }
+
+ li {
+     list-style: none;
+ } 
+
+ .imgUl {
+     padding-top:25px;
+ }

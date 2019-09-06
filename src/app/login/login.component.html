@@ -1,0 +1,26 @@
+<mat-toolbar>
+   <span>LOGIN</span>
+</mat-toolbar>
+<div style="margin:20px;">
+   <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit(loginForm.value)">
+      <mat-form-field class="example-full-width">
+         <input matInput placeholder="Email" formControlName="email" [errorStateMatcher]="matcher">
+         <mat-error>
+            <span *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched">
+               Please enter your email address</span>
+         </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+         <input matInput placeholder="Password" formControlName="password" type="password" [errorStateMatcher]="matcher">
+         <mat-error>
+            <span *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">
+               Please enter your password</span>
+         </mat-error>
+      </mat-form-field>     
+      <div class="button-row">
+         <button type="submit" [disabled]="!loginForm.valid" mat-raised-button color="primary">
+               <span>LOGIN</span>
+         </button>        
+      </div>
+   </form>
+</div>

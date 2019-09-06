@@ -1,0 +1,23 @@
+<div mat-dialog-content>
+    <form [formGroup]="blogCommentForm" (ngSubmit)="onFormSubmit(blogCommentForm.value)">       
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Author" formControlName="author" [errorStateMatcher]="matcher">
+            <mat-error>
+                <span *ngIf="!blogCommentForm.get('author').valid && blogCommentForm.get('author').touched">
+                    Please enter your name</span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Comment" formControlName="comment" [errorStateMatcher]="matcher"></textarea>
+            <mat-error>
+                <span *ngIf="!blogCommentForm.get('comment').valid && blogCommentForm.get('comment').touched">
+                    Please enter your comment</span>
+            </mat-error>
+        </mat-form-field>
+        <div class="button-row">
+            <button type="submit" [disabled]="!blogCommentForm.valid" mat-raised-button color="primary">
+                <mat-icon>save</mat-icon>
+            </button>
+        </div>
+    </form>
+</div>
