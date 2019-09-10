@@ -7,6 +7,8 @@
       and I will get back to you as soon as possible.
    </mat-card-title>
    <mat-card-content>
+      <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>   
+      <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
       <form>
          <mat-form-field class="full-width">
             <mat-label>First Name</mat-label>
@@ -32,7 +34,7 @@
             <mat-label>Message</mat-label>
             <textarea matInput placeholder="Message" name="message" [(ngModel)]="contact.message"></textarea>
          </mat-form-field>
-      </form>
+      </form>  
    </mat-card-content>
    <mat-card-actions>
       <button mat-raised-button (click)="onSubmit();" color="primary">SUBMIT</button>

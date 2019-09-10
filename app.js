@@ -13,8 +13,7 @@ const apiRouter = require('./routes/blogPost.routes.js');
 const apiContactRouter = require('./routes/contact.routes.js');
 const apiContentRouter = require('./routes/blogContent.routes.js');
 const apiCommentRouter = require('./routes/comment.routes.js');
-const mongoose = require('mongoose'); 
-
+const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/blogDb',
 { 
     promiseLibrary: require('bluebird'),
@@ -88,7 +87,7 @@ app.use(function(err, req, res, next)
         
     // render the error page 
     res.status(err.status || 500); 
-    res.send(err.status); 
+    res.sendStatus(err.status); 
 }); 
 
 module.exports = app;
