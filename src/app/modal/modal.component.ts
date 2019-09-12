@@ -26,6 +26,7 @@ export class ModalComponent implements OnInit {
   image: string = '';
   imagePathAndFilename: string = '';
   uploadOnly: boolean = false;
+  matcher: string = '';
   public uploader: FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
 
   constructor(public dialogRef: MatDialogRef<ModalComponent>,     

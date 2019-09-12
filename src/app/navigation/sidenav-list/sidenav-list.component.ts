@@ -9,7 +9,7 @@ import { AuthService } from '../../auth/auth.service';
 export class SidenavListComponent implements OnInit {
   @Output() sidenavClose = new EventEmitter();
 
-  constructor(private auth: AuthService) { 
+  constructor(public auth: AuthService) { 
   }
 
   ngOnInit() {

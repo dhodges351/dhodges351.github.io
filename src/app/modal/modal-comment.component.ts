@@ -18,6 +18,7 @@ export class ModalCommentComponent implements OnInit {
   comment:string = '';
   params: object;
   commentId: string = '';
+  matcher: string = '';
 
   constructor(public dialogRef: MatDialogRef<ModalCommentComponent>,     
     private router: Router, private route: ActivatedRoute, 

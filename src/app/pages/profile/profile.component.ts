@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class ProfileComponent implements OnInit {
   profileJson: string = null;
+  profile: any;
 
   constructor(public auth: AuthService) { }
 
@@ -15,6 +16,14 @@ export class ProfileComponent implements OnInit {
     this.auth.userProfile$.subscribe(
       profile => this.profileJson = JSON.stringify(profile, null, 2)
     );
+    if (this.profileJson != '')
+    {
+      var test = JSON.parse(this.profileJson);
+      if (test)
+      {
+        //alert(test.name);
+      }
+    }
   }
 
 }

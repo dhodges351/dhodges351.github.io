@@ -28,6 +28,7 @@ export class BlogPostListComponent implements OnInit {
   author: string = '';
   createdAt: string = '';
   updatedAt: string = '';
+  matcher: string = '';
   @ViewChild('sectionToScrollTo', {static: true}) sectionToScrollTo: ElementRef;
   public static blogPostListApp;
   blogPosts: Array<Blogpost>;

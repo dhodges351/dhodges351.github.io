@@ -25,6 +25,7 @@ export class BlogContentComponent implements OnInit {
   content:string = '';
   imagePathAndFilename: string = '';
   uploadOnly: boolean = false;
+  matcher: string = '';
 
   constructor(@Inject(DOCUMENT) document, private api: ApiService, private formBuilder: FormBuilder, private router: Router, public snackBar: MatSnackBar) {
   	this.blogContent = new BlogContent();

@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   isLoggedIn:boolean = false;
   email:string = '';
   password:string = '';  
+  matcher: string = '';
 
   constructor(private api: ApiService, 
     private formBuilder: FormBuilder, 

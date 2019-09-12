@@ -24,7 +24,7 @@ export class BlogContentEditComponent implements OnInit {
   content:string = '';
   imagePathAndFilename: string = '';
   uploadOnly: boolean = false;
-  
+  matcher: string = '';
   constructor(private router: Router, private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder) 
   {     
   }
