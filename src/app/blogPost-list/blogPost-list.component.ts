@@ -45,7 +45,9 @@ export class BlogPostListComponent implements OnInit {
   displayedColumns: string[] = null;
   displayedPostColumns: string[] = null;
   dataSource: any;
-  dataSource1: any; 
+  dataSource1: any;
+  startSet:number = 0;
+  endSet:number = 5;
 
   constructor(private api: ApiService,
     private route: ActivatedRoute,
@@ -82,7 +84,8 @@ export class BlogPostListComponent implements OnInit {
     this.api.getBlogPosts()
       .subscribe(res => {
         console.log(res);
-        this.blogPosts = res;        
+        this.blogPosts = res;
+        this.blogPosts = this.blogPosts.slice(this.startSet, this.endSet);     
         this.dataSource = this.blogPosts;     
       }, err => {
         console.log(err);
@@ -280,6 +283,44 @@ export class BlogPostListComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  loadPreviousBlogPosts()
+  {    
+    this.api.getBlogPosts()
+      .subscribe(res => {
+        console.log(res);
+        this.blogPosts = res;     
+        this.startSet = this.startSet - 5;
+        this.endSet = this.endSet - 5;   
+        this.blogPosts = this.blogPosts.slice(this.startSet, this.endSet);          
+        this.dataSource = this.blogPosts;     
+      }, err => {
+        console.log(err);
+      });      
+      if (this.startSet > 0 && this.endSet > 0)
+      {
+
+      }
+  }
+
+  loadNextBlogPosts()
+  {    
+    this.api.getBlogPosts()
+      .subscribe(res => {
+        console.log(res);
+        this.blogPosts = res;        
+        this.blogPosts = this.blogPosts.slice(this.startSet, this.endSet);         
+        this.dataSource = this.blogPosts;     
+      }, err => {
+        console.log(err);
+      });
+      this.startSet = this.endSet;
+      this.endSet = this.endSet + 5;
+      if (this.startSet > 0 && this.endSet > 0)
+      {
+
+      }
   }
   
 }

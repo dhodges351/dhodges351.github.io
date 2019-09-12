@@ -20,7 +20,7 @@
         </td>
         <td>
           <div fxLayoutAlign="end">
-           <img fxShow="{{blogPost.image == null || blogPost.image.length == 0 ?'false':'true'}}" 
+           <img fxShow="{{blogPost.image == '' ? 'false':'true'}}" 
               src="{{blogPost.image}}" height="50%" width="50%" alt="stamp photo">
           </div>
         </td>
@@ -92,8 +92,11 @@
     </a>
   </div>
   <div style="margin-right:5px;" fxShow="{{listOpen ?'true':'false'}}">
-    <a mat-raised-button color="primary" onclick="return false;">
-      More Posts
+    <a mat-raised-button color="primary" (click)="loadPreviousBlogPosts()">
+      <<
+    </a>
+    &nbsp;<a mat-raised-button color="primary" (click)="loadNextBlogPosts()">
+      >>
     </a>
   </div>
 </div>
