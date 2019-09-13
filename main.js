@@ -111,7 +111,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div style=\"margin:0px;background-color: lightgray;\">\n    <table width=\"100%\">\n        <tr>\n            <td>\n                <div style=\"margin-top:5px;margin-left:10px;font-size:x-large;font-weight:bold;\">\n                    {{title}} - {{category}}\n                </div>\n                <div style=\"margin-bottom:10px;margin-top:5px;margin-left:10px;font-size:small;font-weight:normal;\">\n                    By Bob Hodges {{createdAt | date: 'MM/dd/yyyy HH:mm:ss' }}\n                </div>\n            </td>\n            <td>\n                <div style=\"margin-right:10px;text-align: right;\">\n                    <a color=\"primary\" mat-raised-button class=\"orangeButton\" (click)=\"openDialog()\">\n                        Comment\n                    </a>\n                </div>\n            </td>\n        </tr>\n    </table>\n</div>\n<div id=\"container1\">\n    <p style=\"font-size:14px;\">\n        <!-- {{content}} -->\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n    </p>\n    <div fxLayoutAlign=\"center\">\n        <!-- <img src=\"{{image}}\" height=\"35%\" width=\"35%\" alt=\"stamp photo\" /> -->\n        <img src=\"assets/images/1841 Maltese Cross.jpg\" height=\"35%\" width=\"35%\" alt=\"stamp photo\" />\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div style=\"margin:0px;background-color: lightgray;\">\n    <table width=\"100%\">\n        <tr>\n            <td>\n                <div style=\"margin-top:5px;margin-left:10px;font-size:x-large;font-weight:bold;\">\n                    <!-- {{title}} - {{category}} -->\n                    Norwegian Stamps - Northern European\n                </div>\n                <div style=\"margin-bottom:10px;margin-top:5px;margin-left:10px;font-size:small;font-weight:normal;\">\n                    <!-- By Bob Hodges {{createdAt | date: 'MM/dd/yyyy HH:mm:ss' }} -->\n                    By Bob Hodges 08/19/2019\n                </div>\n            </td>\n            <td>\n                <div style=\"margin-right:10px;text-align: right;\">\n                    <a color=\"primary\" mat-raised-button class=\"orangeButton\" (click)=\"openDialog()\">\n                        Comment\n                    </a>\n                </div>\n            </td>\n        </tr>\n    </table>\n</div>\n<div id=\"container1\">\n    <p style=\"font-size:14px;\">\n        <!-- {{content}} -->\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n    </p>\n    <div fxLayoutAlign=\"center\">\n        <!-- <img src=\"{{image}}\" height=\"35%\" width=\"35%\" alt=\"stamp photo\" /> -->\n        <img src=\"assets/images/1841 Maltese Cross.jpg\" height=\"35%\" width=\"35%\" alt=\"stamp photo\" />\n    </div>\n</div>");
 
 /***/ }),
 
@@ -1729,15 +1729,17 @@ var BlogPostListComponent = /** @class */ (function () {
             'short_desc': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
             'author': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
         });
-        this.api.getBlogPosts()
-            .subscribe(function (res) {
-            console.log(res);
-            _this.blogPosts = _this.blogPostListJson; //res;      
-            _this.blogPosts = _this.blogPosts.slice(_this.startSet, _this.endSet);
-            _this.dataSource = _this.blogPosts;
-        }, function (err) {
-            console.log(err);
-        });
+        this.blogPosts = this.blogPostListJson;
+        this.dataSource = this.blogPosts;
+        // this.api.getBlogPosts()
+        //   .subscribe(res => {
+        //     console.log(res);
+        //     this.blogPosts = res;  
+        //     this.blogPosts = this.blogPosts.slice(this.startSet, this.endSet);     
+        //     this.dataSource = this.blogPosts;     
+        //   }, err => {
+        //     console.log(err);
+        //   });
         this.uploader.onAfterAddingFile = function (file) {
             file.withCredentials = false;
         };
